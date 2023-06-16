@@ -41,6 +41,25 @@ io.on("connect", socket =>{
             rooms[roomid] = [socket.id];
             io.to(socket.id).emit("joion romm", null, null, null, null);
         }
+    });
+    
+    socket.on("action", msg =>{
+        if(msg === "mute"){
+
+            micSocket[socket.id] = "off";
+        }
+        else if(msg === "unmute"){
+
+            micSocket[socket.id] = "on";
+        }
+        else if(msg === 'videoon'){
+
+            videoSocket[socket.id] = "on"
+        }
+        else if(msg === "videooff"){
+
+            videoSocket[socket.id]="off"
+        }
     })
 })
 
